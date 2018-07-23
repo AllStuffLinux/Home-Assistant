@@ -1,0 +1,35 @@
+######################################################
+###                                                ###
+###              LIVING ROOM SWITCHES              ###
+###                                                ###
+######################################################
+
+- platform: mqtt
+  name: "Surround sound"
+  state_topic: "livingroom/switch/lamp1"
+  command_topic: "livingroom/switch/lamp1"
+  qos: 0
+  payload_on: "ON"
+  payload_off: "OFF"
+  optimistic: false
+  retain: true
+
+- platform: mqtt
+  name: "livingroom blind1"
+  state_topic: "livingroom/switch/blind1"
+  command_topic: "livingroom/switch/blind1"
+  qos: 0
+  payload_on: "1"
+  payload_off: "0"
+  optimistic: false
+  retain: true
+
+- platform: mqtt
+  name: "livingroom blind2"
+  state_topic: "livingroom/blinds"
+  command_topic: "livingroom/blinds"
+  qos: 0
+  payload_on: "1"
+  payload_off: "0"
+  optimistic: false
+  retain: true

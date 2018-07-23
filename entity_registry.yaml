@@ -1,0 +1,130 @@
+media_player.livingroom:
+  config_entry_id:
+  name:
+  platform: cast
+  unique_id: 8c87893a-2b76-c1b8-e88a-585c914edcbf
+media_player.bedroom:
+  config_entry_id:
+  name:
+  platform: cast
+  unique_id: dbd7bccc-e3ee-f634-0e71-8622f5aa202a
+media_player.home_group:
+  config_entry_id:
+  name:
+  platform: cast
+  unique_id: c1a52eb0-3aeb-45f6-9d1e-8cec0ea25409
+media_player.livingroom_2:
+  config_entry_id:
+  name:
+  platform: cast
+  unique_id: 2652ed53-6005-491f-b3a2-e9e406ac034a
+sensor.pws_precip_1hr_string:
+  config_entry_id:
+  name:
+  platform: wunderground
+  unique_id: '@-80.110450,35.752955,precip_1hr_string'
+sensor.pws_wind_mph:
+  config_entry_id:
+  name:
+  platform: wunderground
+  unique_id: '@-80.110450,35.752955,wind_mph'
+sensor.pws_precip_today_in:
+  config_entry_id:
+  name:
+  platform: wunderground
+  unique_id: '@-80.110450,35.752955,precip_today_in'
+sensor.pws_relative_humidity:
+  config_entry_id:
+  name:
+  platform: wunderground
+  unique_id: '@-80.110450,35.752955,relative_humidity'
+sensor.pws_feelslike_f:
+  config_entry_id:
+  name:
+  platform: wunderground
+  unique_id: '@-80.110450,35.752955,feelslike_f'
+sensor.pws_dewpoint_f:
+  config_entry_id:
+  name:
+  platform: wunderground
+  unique_id: '@-80.110450,35.752955,dewpoint_f'
+sensor.pws_alerts:
+  config_entry_id:
+  name:
+  platform: wunderground
+  unique_id: '@-80.110450,35.752955,alerts'
+sensor.pws_temp_f:
+  config_entry_id:
+  name:
+  platform: wunderground
+  unique_id: '@-80.110450,35.752955,temp_f'
+sensor.pws_heat_index_f:
+  config_entry_id:
+  name:
+  platform: wunderground
+  unique_id: '@-80.110450,35.752955,heat_index_f'
+sensor.pws_elevation:
+  config_entry_id:
+  name:
+  platform: wunderground
+  unique_id: '@-80.110450,35.752955,elevation'
+sensor.pws_precip_1hr_in:
+  config_entry_id:
+  name:
+  platform: wunderground
+  unique_id: '@-80.110450,35.752955,precip_1hr_in'
+media_player.roku_18c23m028138:
+  config_entry_id:
+  name:
+  platform: roku
+  unique_id: 18C23M028138
+light.hue_white_lamp_2:
+  config_entry_id:
+  name:
+  platform: hue
+  unique_id: 00:17:88:01:02:f0:0d:66-0b
+light.hue_white_lamp_1:
+  config_entry_id:
+  name:
+  platform: hue
+  unique_id: 00:17:88:01:02:8d:a9:d7-0b
+media_player.livingroom_3:
+  config_entry_id:
+  name:
+  platform: cast
+  unique_id: 754cc54a-3587-8ceb-a2c0-3eec036c5b42
+media_player.googlehome7678:
+  config_entry_id:
+  name: Google Home
+  platform: cast
+  unique_id: 754cc54a-3587-8ceb-a2c0-3eec036c5b42
+light.hue_white_lamp_3:
+  config_entry_id: c90cd1e2ffca4dc5a4a99baaae1dc17b
+  name:
+  platform: hue
+  unique_id: 00:17:88:01:04:5b:d3:e0-0b
+light.hue_white_lamp_4:
+  config_entry_id: c90cd1e2ffca4dc5a4a99baaae1dc17b
+  name:
+  platform: hue
+  unique_id: 00:17:88:01:03:1c:fd:e5-0b
+light.hue_white_lamp_3_2:
+  config_entry_id: c90cd1e2ffca4dc5a4a99baaae1dc17b
+  name:
+  platform: hue
+  unique_id: 00:17:88:01:03:1c:f6:1d-0b
+light.hue_white_lamp_3_3:
+  config_entry_id: c90cd1e2ffca4dc5a4a99baaae1dc17b
+  name:
+  platform: hue
+  unique_id: 00:17:88:01:03:18:ee:29-0b
+light.hue_white_lamp_3_4:
+  config_entry_id: c90cd1e2ffca4dc5a4a99baaae1dc17b
+  name:
+  platform: hue
+  unique_id: 00:17:88:01:03:07:18:99-0b
+light.hue_white_lamp_3_5:
+  config_entry_id: c90cd1e2ffca4dc5a4a99baaae1dc17b
+  name:
+  platform: hue
+  unique_id: 00:17:88:01:03:18:d0:19-0b

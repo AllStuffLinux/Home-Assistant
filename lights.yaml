@@ -1,0 +1,24 @@
+######################################################
+###                                                ###
+###                       LIGHTS                   ###
+###                                                ###
+######################################################
+
+- platform: hue
+  host: 192.168.240.234
+  name: Livingroom lamps
+  entities:
+  - light.hue_white_lamp_1
+  - light.hue_white_lamp_2
+  - light.hue_white_lamp_3
+  - light.hue_white_lamp_3_2
+  - light.hue_white_lamp_3_3
+  - light.hue_white_lamp_3_4
+  - light.hue_white_lamp_3_5
+  - light.hue_white_lamp_4
+
+#- platform: mqtt
+#  name: Livingroom blinds
+#  entities:
+#  - switch.livingroom_blind1
+#  - switch.livingroom_blind2

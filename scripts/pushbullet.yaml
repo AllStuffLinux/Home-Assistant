@@ -1,0 +1,15 @@
+######################################################
+###                                                ###
+###                     PUSHBULLET                 ###
+###                                                ###
+######################################################
+
+#Lunch_pushbullet:
+  alias: 'Lunch time'
+  sequence: 
+    - service: notify.pushbullet
+      data: 
+        title: Lunch time
+        message: Lunch time
+#        data:
+#          file_url: https://i.pinimg.com/originals/c1/55/a1/c155a1b393899ffd7c36ff01090ce8f5.jpg

@@ -1,0 +1,180 @@
+######################################################
+###                                                ###
+###                      WEATHER                   ###
+###                                                ###
+######################################################
+
+- platform: yr
+
+- platform: wunderground
+  name: 'Weather'
+  api_key: !secret forecast_key
+  monitored_conditions:
+    - alerts
+    - dewpoint_f
+    - feelslike_f
+    - heat_index_f
+    - elevation
+    - precip_1hr_in
+    - precip_1hr_string
+    - precip_today_in
+    - relative_humidity
+    - temp_f
+    - wind_mph
+
+######################################################
+###                                                ###
+###               LIVING ROOM CLIMATE              ###
+###                                                ###
+######################################################
+
+- platform: mqtt
+  name: "Livingroom temperature"
+  state_topic: "livingroom/sensor/temperature"
+  qos: 0
+  unit_of_measurment: "°F"
+  value_template: “{{ value_json.temperature }}”
+
+- platform: mqtt
+  name: "Livingroom humidity"
+  state_topic: "livingroom/sensor/humidity"
+  qos: 0
+  unit_of_measurment: "%"
+  value_template: “{{ value_json.humidity }}”
+
+######################################################
+###                                                ###
+###                 BANDWIDTH TEST                 ###
+###                                                ###
+######################################################
+
+- platform: fastdotcom
+  name: "Speedtest_1"
+
+- platform: speedtest
+  name: "Speedtest_2"
+  minute:
+    - 0
+    - 30
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+
+######################################################
+###                                                ###
+###                  SYSTEM MONITOR                ###
+###                                                ###
+######################################################
+
+- platform: systemmonitor
+  name: System Monitor
+  resources:
+    - type: memory_free
+    - type: processor_use
+      arg: /home
+    - type: swap_use
+    - type: swap_free
+    - type: load_1m
+    - type: load_5m
+    - type: load_15m
+    - type: network_in
+      arg: eth0
+    - type: network_out
+      arg: eth0
+    - type: ipv4_address
+      arg: eth0
+    - type: last_boot
+    - type: since_last_boot
+
+######################################################
+###                                                ###
+###                      POOL                      ###
+###                                                ###
+######################################################
+
+- platform: mqtt
+  state_topic: "pool/sensor/temperature"
+  name: "Pool temp"
+  unit_of_measurement: "°f"
+  qos: 1
+
+######################################################
+###                                                ###
+###                    TIME/DATE                   ###
+###                                                ###
+######################################################
+
+- platform: time_date
+  display_options:
+    - 'time'
+    - 'date'
+    - 'date_time'
+    - 'time_date'
+    - 'time_utc'
+    - 'beat'
+
+######################################################
+###                                                ###
+###                    PI-HOLE                     ###
+###                                                ###
+######################################################
+
+- platform: pi_hole
+  host: 192.168.240.247
+  monitored_conditions:
+  - ads_blocked_today
+  - ads_percentage_today
+  - dns_queries_today
+  - domains_being_blocked
+  - queries_cached
+  - queries_forwarded
+  - unique_clients
+  - unique_domains
+
+######################################################
+###                                                ###
+###               PHONE BATTERY LEVEL              ###
+###                                                ###
+######################################################
+
+- platform: mqtt
+  state_topic: "owntracks/username/deviceid"
+  name: "Phone Battery"
+  unit_of_measurement: "%"
+  value_template: '{{ value_json.batt }}'
+  device_class: battery
+
+######################################################
+###                                                ###
+###                      GLANCES                   ###
+###                                                ###
+######################################################
+
+- platform: glances
+  host: 192.168.240.5
+  name: "VM_Host"
+  resources:
+  - 'disk_use_percent'
+  - 'disk_use'
+  - 'disk_free'
+  - 'memory_use_percent'
+  - 'memory_use'
+  - 'memory_free'
+  - 'swap_use_percent'
+  - 'swap_use'
+  - 'swap_free'
+  - 'processor_load'
+  - 'process_running'
+  - 'process_total'
+  - 'process_thread'
+  - 'process_sleeping'
+
+######################################################
+###                                                ###
+###                      TRAVIS CI                 ###
+###                                                ###
+######################################################
+
+- platform: travisci
+  api_key: !secret travis_ci
