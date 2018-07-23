@@ -1,0 +1,217 @@
+######################################################
+###                                                ###
+###               HOME ASSISTANT THEMES            ###
+###                                                ###
+######################################################
+
+- id: hass_theme
+  alias: hass_theme
+  initial_state: 'on'
+  trigger:
+    - platform: state
+      entity_id: input_select.hass_theme
+  action:
+    - service: frontend.set_theme
+      data_template:
+        name: "{{ states.input_select.hass_theme.state }}"
+
+######################################################
+###                                                ###
+###               CHANGE THEME AT NIGHT            ###
+###                                                ###
+######################################################
+
+- alias: 'Set dark theme for the night'
+  initial_state: True
+  trigger:
+    - platform: time
+      at: '21:00'
+  action:
+    - service: frontend.set_theme
+      data:
+        name: Night_Theme
+
+- alias: 'Set light theme for day'
+  initial_state: on
+  trigger:
+    - platform: time
+      at: '9:00'
+  action:
+    - service: frontend.set_theme
+      data:
+        name: default
+
+######################################################
+###                                                ###
+###                  RESTART HASS                  ###
+###                                                ###
+######################################################
+
+- alias: Restart HASS
+  trigger:
+    - platform: state
+      entity_id: input_boolean.restart_hass
+      from: 'off'
+      to: 'on'
+  action:
+    service: homeassistant.restart
+
+######################################################
+###                                                ###
+###                  LUNCH REMINDER                ###
+###                                                ###
+######################################################
+
+- alias: Send message at a given time
+  trigger:
+    platform: time
+    hours: 12
+    minutes: 15
+    seconds: 0
+  action:
+    service: notify.pushbullet
+    data:
+      message: 'Time for lunch'
+
+######################################################
+###                                                ###
+###              LIVINGROOM LAMPS DIMMER           ###
+###                                                ###
+######################################################
+
+- alias: Livingroom lamps dimmer
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: input_number.lrl_dimmer
+  action:
+    service: light.turn_on
+    data_template:
+      entity_id:  group.livingroom_lamps
+      brightness: '{{states.input_number.lr_dimmer.state | int }}'
+
+######################################################
+###                                                ###
+###             LAMP BESIDE SOFA DIMMER            ###
+###                                                ###
+######################################################
+
+- alias: Lamp beside sofa dimmer
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: input_number.lbhs_dimmer
+  action:
+    service: light.turn_on
+    data_template:
+      entity_id:  group.livingroom_lamps
+      brightness: '{{states.input_number.lbhs_dimmer.state | int }}'
+
+######################################################
+###                                                ###
+###             LAMP BEHIND SOFA DIMMER            ###
+###                                                ###
+######################################################
+
+- alias: Lamp behind sofa dimmer
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: input_number.lbss_dimmer
+  action:
+    service: light.turn_on
+    data_template:
+      entity_id:  group.livingroom_lamps
+      brightness: '{{states.input_number.lbss_dimmer.state | int }}'
+
+######################################################
+###                                                ###
+###           SHARICE'S NITE STAND DIMMER          ###
+###                                                ###
+######################################################
+
+- alias: Sharice's nite stand dimmer
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: input_number.snl_dimmer
+  action:
+    service: light.turn_on
+    data_template:
+      entity_id: group.sharices_nite_stand_lamp
+      brightness: '{{states.input_number.snl_dimmer.state | int }}'
+
+######################################################
+###                                                ###
+###            JEREMY'S NITE STAND DIMMER          ###
+###                                                ###
+######################################################
+
+- alias: Jeremy's nite stand dimmer
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: input_number.jnl_dimmer
+  action:
+    service: light.turn_on
+    data_template:
+      entity_id: group.jeremys_nite_stand_lamp
+      brightness: '{{states.input_number.jnl_dimmer.state | int }}'
+
+######################################################
+###                                                ###
+###            MASTER BEDROOM LAMPS DIMMER         ###
+###                                                ###
+######################################################
+
+- alias: Master bedroom lamps dimmer
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: input_number.mbl_dimmer
+  action:
+    service: light.turn_on
+    data_template:
+      entity_id:  group.master_bedroom_lamps
+      brightness: '{{states.input_number.mbl_dimmer.state | int }}'
+
+######################################################
+###                                                ###
+###                     BLINDS                     ###
+###                                                ###
+######################################################
+
+- alias: Livingroom blinds position
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: input_number.lr_blinds
+  action:
+    service: mqtt.publish
+    data_template:
+#     entity_id:  group.livingroom_blinds
+      topic: "livingroom/blinds"
+      retain: true
+      payload_template: '{{states.input_number.lr_blinds.state | int }}'
+
+
+
+######################################################
+###                                                ###
+###            SAMSUNG TV CHANGE CHANNEL           ###
+###                                                ###
+######################################################
+
+- alias: Change channel
+  trigger:
+    platform: state
+    entity_id: input_select.channel
+    to: "Rain"
+  action:
+    service: media_player.play_media
+    data:
+      entity_id: media_player.samsung_smart_tv
+      media_content_id: "502"
+      media_content_type: "channel"
+
+

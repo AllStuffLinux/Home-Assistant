@@ -1,0 +1,27 @@
+######################################################
+###                                                ###
+###          DEVICE TRACKER PRESENCE DETECT        ###
+###                                                ###
+######################################################
+
+#- platform: linksys_smart
+#  host: 192.168.240.1
+#  username: root
+#  password: CaudlesOn!y
+#  new_device_defaults:
+#    track_new_devices: false
+#    hide_if_away: false
+
+#- platform: owntracks
+#  max_gps_accuracy: 100
+#  mqtt_topic: "owntracks/#"
+#  track_new_devices: no
+
+- platform: nmap_tracker
+  hosts:
+    - 192.168.240.58
+    - 192.168.240.61
+    - 192.168.240.62
+    - 192.168.240.63
+    - 192.168.240.64
+  interval_seconds: 30

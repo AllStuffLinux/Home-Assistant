@@ -1,0 +1,21 @@
+######################################################
+###                                                ###
+###                  JARVIS_GREETING               ###
+###                                                ###
+######################################################
+
+alias: Jeremy Greeting
+sequence:
+  - service: tts.google_say
+    data_template:
+      entity_id: media_player.livingroom_3
+      message: >
+        {% if now().strftime("%H")|int < 12 %}
+        Good morning Jeremy, I hope you slept well. It's currently {{states.sensor.pws_temp_f.state|round}} degrees in Lexington. I hope you have a good day, and may the force be with you.
+        {% elif now().strftime("%H")|int < 18 %}
+        Good afternoon. It's currently {{states.sensor.pws_temp_f.state|round}} degrees in Lexington. May the force be with you.
+        {% else %}
+        Good evening Jeremy, I hope you've had a great day. It's currently {{states.sensor.pws_temp_f.state|round}} degrees in Lexington. May the force be with you.
+        {% endif %}
+# FUTURE PLANS ADD ANNOUNCMENT OF POOL TEMP AND THE DAYS WEATHER FORCAST
+ 

@@ -1,0 +1,98 @@
+######################################################
+###                                                ###
+###          LIVING ROOM BLINDS POSITION           ###
+###                                                ###
+######################################################
+
+lr_blinds:
+  name: Livingroom blinds position
+#  initial: 5
+  min: 1
+  max: 700
+  step: 20
+  mode: slider
+
+######################################################
+###                                                ###
+###             LAMP BESIDE SOFA DIMMER            ###
+###                                                ###
+######################################################
+
+lbss_dimmer:
+  name: Lamp beside sofa dimmer
+  initial: 5
+  min: 1
+  max: 254
+  step: 1
+  mode: slider
+
+######################################################
+###                                                ###
+###             LAMP BEHIND SOFA DIMMER            ###
+###                                                ###
+######################################################
+
+lbhs_dimmer:
+  name: Lamp behind sofa dimmer
+  initial: 5
+  min: 1
+  max: 254
+  step: 1
+  mode: slider
+
+######################################################
+###                                                ###
+###             LIVINGROOM LAMPS DIMMER            ###
+###                                                ###
+######################################################
+
+lrl_dimmer:
+  name: Livingroom lamps dimmer
+  initial: 5
+  min: 1
+  max: 254
+  step: 1
+  mode: slider
+
+######################################################
+###                                                ###
+###         SHARICE'S NITE STAND DIMMER            ###
+###                                                ###
+######################################################
+
+snl_dimmer:
+  name: Sharice's nite stand dimmer
+  initial: 5
+  min: 1
+  max: 254
+  step: 1
+  mode: slider
+
+######################################################
+###                                                ###
+###          JEREMY'S NITE STAND DIMMER            ###
+###                                                ###
+######################################################
+
+jnl_dimmer:
+  name: Jeremy's nite stand dimmer
+  initial: 5
+  min: 1
+  max: 254
+  step: 1
+  mode: slider
+
+######################################################
+###                                                ###
+###         MASTER BEDROOM LAMPS DIMMER            ###
+###                                                ###
+######################################################
+
+mbl_dimmer:
+  name: Master bedroom lamps dimmer
+  initial: 5
+  min: 1
+  max: 254
+  step: 1
+  mode: slider
+

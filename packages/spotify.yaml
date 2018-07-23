@@ -1,0 +1,190 @@
+media_player:
+  - platform: spotify
+    client_id: !secret spotify_id
+    client_secret: !secret spotify_secret
+    aliases:
+      017b869e8b2eb4adf6c0d5524a7dc1d300a732b0: 'LENOVO'
+#      017b869e8b2eb4adf6c0d5524a7dc1d300a732b0: 'Laptop'
+#      2c1eb827a5cd8ee52e46a7c241e6de06020685e2: 'XT1650'
+      7c2387fbc40dd43a0fe04ed2b8e482f9c510255c: 'Web Player (Firefox)'
+      2c1eb827a5cd8ee52e46a7c241e6de06020685e2: 'Phone'
+      2652ed53-6005-491f-b3a2-e9e406ac034a: 'Living room'
+
+group:
+  music_spotify:
+    name: Spotify
+    entities:
+      - media_player.spotify
+  
+  home_spotify_controls:
+    name: Spotify Controls
+    control: hidden
+    entities:
+      - input_select.spotify_playlist
+      - input_select.spotify_source
+      - script.spotify_music
+      - input_number.spotify_volume
+      - input_boolean.spotify_shuffle
+
+homeassistant:
+  customize:
+    script.spotify_music:
+      friendly_name: 'Play'
+      icon: mdi:play
+
+    switch.surround_sound:
+      friendly_name: 'Surround sound'
+      icon: mdi:speaker
+      
+sensor:
+  - platform: template
+    sensors:
+      spotify_volume:
+        friendly_name: "Spotify Volume"
+        value_template: "{{ states.media_player.spotify.attributes.volume_level }}"
+  - platform: template
+    sensors:
+      spotify_shuffle:
+        friendly_name: "Spotify Shuffle"
+        value_template: "{{ states.media_player.spotify.attributes.shuffle }}"
+  - platform: template
+    sensors:
+      spotify_source:
+        friendly_name: "Spotify Source"
+        value_template: "{{ states.media_player.spotify.attributes.source }}"
+
+input_number:
+  spotify_volume:
+    name: Volume
+    icon: mdi:volume-high
+    initial: 100
+    min: 0
+    max: 100
+    step: 1
+
+input_select:
+  spotify_playlist:
+    name: 'Playlist:'
+    options:
+      - Christmas Trap
+      - This is Metallica
+      - Very favorite
+      - This is Green Day
+      - This is Nirvana
+    icon: mdi:spotify
+  spotify_source:
+    name: 'Source:'
+    options:
+      - LENOVO
+      - XT1650
+      - Phone
+      - Laptop
+      - Livingroom
+      - Google Home
+      - Web Player (Firefox)
+    initial: Livingroom
+    icon: mdi:speaker-wireless
+
+input_boolean:
+  spotify_shuffle:
+    name: Shuffle
+    icon: mdi:shuffle-variant
+
+script:
+  spotify_music:
+    alias: "Play selected spotify playlist"
+    sequence:
+      - service: media_player.select_source
+        data_template: 
+          entity_id: media_player.spotify
+          source: >
+            {% if is_state("input_select.spotify_source", "Laptop") %} Laptop
+            {% elif is_state("input_select.spotify_source", "Google Home") %} media_player.livingroom_3
+            {% elif is_state("input_select.spotify_source", "Samsung TV") %} media_player.samsung_smart_tv
+            {% elif is_state("input_select.spotify_source", "Phone") %} Phone
+            {% elif is_state("input_select.spotify_source", "Surround Sound") %} Surround Sound
+            {% elif is_state("input_select.spotify_source", "LENOVO") %} LENOVO
+            {% elif is_state("input_select.spotify_source", "XT1650") %} XT1650
+            {% elif is_state("input_select.spotify_source", "Web Player (Firefox)") %} 'Web Player (Firefox)'
+            {% endif %}
+      - service: media_player.play_media
+        data_template:
+          entity_id: media_player.spotify
+          media_content_type: playlist
+          media_content_id: >
+            {% if is_state("input_select.spotify_playlist", "Christmas Trap") %} spotify:user:spotify:playlist:5o33ZKCnbPbZVwuAnrODea
+            {% elif is_state("input_select.spotify_playlist", "This is Metallica") %} spotify:user:spotify:playlist:37i9dQZF1DXbj9Ksq4BAdj 
+            {% elif is_state("input_select.spotify_playlist", "Very favorite") %} spotify:user:12131571557:playlist:0vva03a8Jw3IBbkq25LUC5
+            {% elif is_state("input_select.spotify_playlist", "This is Green Day") %} spotify:user:spotify:playlist:6XvD8yMjtehcsH7TFSxAPN
+            {% elif is_state("input_select.spotify_playlist", "This is Nirvana") %} spotify:user:spotify:playlist:37i9dQZF1DX82CY3GzF2m6
+            {% endif %}
+
+automation:
+  - alias: 'Spotify Volume (Set)'
+    trigger:
+      platform: state
+      entity_id: input_number.spotify_volume
+    action:
+      service: media_player.volume_set
+      data_template:
+        entity_id: media_player.spotify
+        volume_level: '{{  states.input_number.spotify_volume.state | int / 100  }}'
+  
+  - alias: 'Spotify Volume (Sync)'
+    trigger:
+      - platform: homeassistant
+        event: start
+      - platform: state
+        entity_id: sensor.spotify_volume
+    action:
+      - delay:
+          seconds: 5
+      - service: input_number.set_value
+        data_template:
+          entity_id: input_number.spotify_volume
+          value: '{{  states.sensor.spotify_volume.state | float | round(2) * 100  }}'
+  
+  - alias: 'Spotify Shuffle (Set)'
+    trigger:
+      platform: state
+      entity_id: input_boolean.spotify_shuffle
+    action:
+      service: media_player.shuffle_set
+      data_template:
+        entity_id: media_player.spotify
+        shuffle: >
+          {% if is_state('input_boolean.spotify_shuffle', 'off') %} 
+          false
+          {% elif is_state('input_boolean.spotify_shuffle', 'on') %}
+          true
+          {% endif %}
+  
+  - alias: 'Spotify Shuffle (Sync)'
+    trigger:
+      - platform: homeassistant
+        event: start
+      - platform: state
+        entity_id: sensor.spotify_shuffle
+    action:
+      - delay:
+          seconds: 5
+      - service_template: >
+          {% if states.sensor.spotify_shuffle.state == 'False' %}
+            input_boolean.turn_off
+          {% else %}
+            input_boolean.turn_on
+          {% endif %}
+        data:
+          entity_id: input_boolean.spotify_shuffle
+
+  - alias: 'Spotify Source (Sync)'
+    trigger:
+      - platform: homeassistant
+        event: start
+      - platform: state
+        entity_id: sensor.spotify_source
+    action:
+      service: input_select.select_option
+      entity_id: input_select.spotify_source
+      data_template:
+        option: '{{  states.sensor.spotify_source.state  }}'

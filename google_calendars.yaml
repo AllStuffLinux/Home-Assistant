@@ -1,0 +1,42 @@
+
+- cal_id: q9j61b55i20ijkapf9bahcl50o@group.calendar.google.com
+  entities:
+  - device_id: ecu_homework
+    ignore_availability: true
+    name: ECU homework
+    track: true
+
+- cal_id: wjcaudle@gmail.com
+  entities:
+  - device_id: personal
+    ignore_availability: true
+    name: Personal
+    track: true
+
+- cal_id: family04065815798674158665@group.calendar.google.com
+  entities:
+  - device_id: family
+    ignore_availability: true
+    name: Family
+    track: true
+
+- cal_id: addressbook#contacts@group.v.calendar.google.com
+  entities:
+  - device_id: contacts
+    ignore_availability: true
+    name: Contacts
+    track: true
+
+- cal_id: en.usa#holiday@group.v.calendar.google.com
+  entities:
+  - device_id: holidays_in_united_states
+    ignore_availability: true
+    name: Holidays in United States
+    track: true
+
+- cal_id: mrugbf4den8urjbccaq1hcbjo8@group.calendar.google.com
+  entities:
+  - device_id: main_calandar
+    ignore_availability: true
+    name: main_calandar
+    track: true

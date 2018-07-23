@@ -1,0 +1,102 @@
+######################################################
+###                                                ###
+###                  HOME ASSISTANT                ###
+###                                                ###
+######################################################
+
+homeassistant:
+  customize: !include customize.yaml
+  elevation: 809
+  latitude: !secret latitude
+  longitude: !secret longitude
+  name: "Our Home"
+  time_zone: America/New_York
+  unit_system: imperial
+  whitelist_external_dirs: /home/homeassistant/pictures
+  packages: !include_dir_named packages
+#    alarm_1: !include alarm_1.yaml
+#    alarm_2: !include alarm_2.yaml
+
+frontend:
+  themes: !include_dir_merge_named themes/
+  extra_html_url:
+    - /local/custom_ui/state-card-floorplan.html
+config:
+updater:
+discovery:
+conversation:
+history:
+logbook:
+map:
+sun:
+recorder:
+
+######################################################
+###                                                ###
+###                  INCLUDE FILES                 ###
+###                                                ###
+######################################################
+
+sensor: !include sensors.yaml
+binary_sensor: !include binary_sensors.yaml
+media_player: !include media_players.yaml
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include_dir_named scripts
+zone: !include zones.yaml
+switch: !include switches.yaml
+device_tracker: !include device_tracker.yaml
+mqtt: !include mqtt.yaml
+camera: !include camera.yaml
+panel_iframe: !include iframe.yaml
+input_select: !include input_select.yaml
+input_boolean: !include input_boolean.yaml
+#notify: !include notify.yaml
+light: !include lights.yaml
+input_number: !include input_number.yaml
+#cover: !include covers.yaml
+#cast: include cast.yaml
+cast:
+  media_player:
+  - 192.168.240.51
+panel_custom: !include panel_custom.yaml
+#google_assistant: !include google_assistant.yaml
+
+######################################################
+###                                                ###
+###                      LOGGING                   ###
+###                                                ###
+######################################################
+
+logger:
+  default: warning
+  logs:
+    homeassistant.components.mqtt: warning
+#Use this to find aliases for your spotify media_player component. Look at home-assistant.log to find the aliases of your components.  Enter these aliases into that component in configuration.yaml. https://home-assistant.io/components/media_player.spotify/
+    homeassistant.components.media_player.spotify: info
+
+######################################################
+###                                                ###
+###                     WEB ACCESS                 ###
+###                                                ###
+######################################################
+
+http:
+  api_password: !secret http_password
+  ip_ban_enabled: True
+  login_attempts_threshold: 3
+  use_x_forwarded_for: True
+  base_url: homeassistant.allstufflinux.com
+  trusted_networks:
+    - 192.168.240.0/24
+    - 127.0.0.1
+
+######################################################
+###                                                ###
+###                  GOOGLE CALANDER               ###
+###                                                ###
+######################################################
+
+#google:
+#  client_id: !secret gc_client_id
+#  client_secret: !secret gc_client_secret

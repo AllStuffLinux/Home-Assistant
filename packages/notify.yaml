@@ -1,0 +1,23 @@
+notify:
+  - platform: xmpp
+    name: jabber
+    sender: !secret xmpp_username
+    password: !secret xmpp_password
+    recipient: AllStuffLinux@kode.im
+
+  - platform: pushbullet
+    name: Pushbullet
+    api_key: !secret pushbullet_api
+
+  - name: Jeremy
+    platform: html5
+    gcm_api_key: !secret gcm_api_key
+    gcm_sender_id: !secret gcm_sender_id
+
+tts:
+  - platform: google
+    cache: true
+    cache_dir: /tmp/tts
+    time_memory: 300
+
+cloud:
