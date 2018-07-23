@@ -3,11 +3,6 @@ language: python
 python:
 - "3.6.4"
 
-notifications:
-  email:
-    on_success: never # default: change
-    on_failure: always # default: always
-
 before_install:
   - mv travis_secrets.yaml secrets.yaml
 

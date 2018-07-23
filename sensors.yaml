@@ -178,3 +178,10 @@
 
 - platform: travisci
   api_key: !secret travis_ci
+
+
+
+- platform: fedex
+  name: FedEx
+  username: !secret fedex_username
+  password: !secret fedex_password
