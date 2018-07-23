@@ -1,13 +1,14 @@
 language: python
 
-python:
-- "3.6.4"
+cache: pip
 
-before_install:
-  - mv travis_secrets.yaml secrets.yaml
+python:
+  - "3.6.4"
 
 install:
   - pip3 install homeassistant
 
 script:
-- hass -c . --script check_config
+  - mv travis_secrets.yaml secrets.yaml
+  - hass -c . --script check_config
+  - '! less check.output | grep -q "Failed config"'
