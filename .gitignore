@@ -1,0 +1,19 @@
+*
+!*.py
+!*.yml
+!*.yaml
+!www
+!themes
+!Test UI
+!Test packages
+!Test automations
+!scripts
+!panels
+!packages
+!intent_templates
+!.cloud
+!.git
+!.storage
+!.gitignore
+secrets.yaml
+known_devices.yaml

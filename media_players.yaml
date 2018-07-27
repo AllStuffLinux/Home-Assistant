@@ -1,0 +1,32 @@
+######################################################
+###                                                ###
+###         Home Assistant Media Players           ###
+###                                                ###
+######################################################
+
+- platform: samsungtv
+  host: 192.168.240.50
+  port: 8001
+  mac: 68:27:37:C9:80:FD
+  name: Samsung Smart TV
+
+- platform: roku
+  host: 192.168.240.56
+  scan_interval: 15
+
+#- platform: cast
+#  media_player:
+#  - host: 192.168.240.51
+
+#- platform: cast
+#  media_player:
+#  - host: 192.168.240.52
+
+- platform: kodi
+  host: 192.168.240.253
+  port: 8095
+  name: Kodi
+  username: !secret kodi_user
+  password: !secret kodi_pass
+  enable_websocket: true
+  tcp_port: 9777

@@ -1,0 +1,58 @@
+######################################################
+###                                                ###
+###               HOME ASSISTANT THEMES            ###
+###                                                ###
+######################################################
+
+hass_theme:
+  name: HASS Themes
+  options:
+   - 'default'
+   - 'Night'
+   - 'Night_Theme'
+   - 'PmxMononight'
+   - 'PmxMonolight'
+   - 'Matrix_Theme'
+   - 'dark_cyan'
+   - 'dark_red'
+   - 'christmas2'
+   - 'halloween'
+   - 'night2'
+   - 'wood'
+   - 'vintage'
+   - 'teal'
+   - 'solarized_light'
+   - 'material_dark_green'
+   - 'dark_orange'
+   - 'dark'
+   - 'christmas'
+   - 'midnight'
+   - 'dark'
+  icon: 'mdi:theme-light-dark'
+
+######################################################
+###                                                ###
+###                       KODI                     ###
+###                                                ###
+######################################################
+
+#kodi_results:
+#    name: Kodi API results
+#    options:
+#     - Nothing to do
+
+######################################################
+###                                                ###
+###            SAMSUNG TV CHANGE CHANNEL           ###
+###                                                ###
+######################################################
+
+#channel:
+#    name: channel
+#    options:
+#      - 500
+#      - 501
+#      - 502
+#      - 503
+#    initial: on
+#    icon: mdi:weather-rainy

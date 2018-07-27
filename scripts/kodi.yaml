@@ -1,0 +1,31 @@
+alias: "Last added movies"
+sequence:
+  - service: media_player.kodi_call_method
+    data:
+      entity_id: media_player.kodi
+      method: VideoLibrary.GetRecentlyAddedMovies
+      properties:
+        - title
+        - year
+        - file
+        - lastplayed
+
+#alias: "Last TV shows"
+#sequence:
+  - service: media_player.kodi_call_method
+    data:
+      entity_id: media_player.kodi
+      method: VideoLibrary.GetRecentlyAddedEpisodes
+      properties:
+        - showtitle
+        - file
+        - lastplayed
+        - firstaired
+
+#alias: "TV Channels"
+#sequence:
+  - service: media_player.kodi_call_method
+    data:
+      entity_id: media_player.kodi
+      method: PVR.GetChannels
+      channelgroupid: 1
